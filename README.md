@@ -38,15 +38,19 @@ El proyecto sigue el layout de paquetes solicitado:
 ### Caso A: Consulta Exitosa (SUCCESS)
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/20601030013
+```
 
-###Caso B: Validación de RUC (11 dígitos)
+### Caso B: Validación de RUC (11 dígitos)
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/12345
+```
 
-###Caso C: Error de Proveedor (RUC no válido)
+### Caso C: Error de Proveedor (RUC no válido)
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/11111111111
+```
 
-###Caso D: Ver Historial de Consultas
+### Caso D: Ver Historial de Consultas
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/20601030013/consultas
+```

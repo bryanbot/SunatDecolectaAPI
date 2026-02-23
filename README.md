@@ -13,9 +13,9 @@ Este microservicio permite la consulta de RUCs a través de la API externa de **
 ## 2. Configuración de Variables de Entorno
 El sistema requiere un token de seguridad para comunicarse con la API de Decolecta. Para modificar el valor de este token, una vez copiado el proyecto, dirigirse al archivo **application.properties** que se encuentra en `src/main/resources`.  
 
-Configure la siguiente variable de entorno en su IDE o Sistema Operativo:
+Configure la siguiente variable presente en el archivo:
 * **Variable**: `decoleta.token`
-* **Valor sugerido**: `sk_<generateyourown>.<generateyourown>`.  
+* **Valor sugerido**: `sk_<generateyourown>`.  
 
 Una vez configurado el token de **Decolecta**, es importante revisar la `url`, `username` y `password` de la base de datos. Estas variables fueron definidas en el archivo **application.properties** mencionado anteriormente.
 

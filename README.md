@@ -11,10 +11,11 @@ Este microservicio permite la consulta de RUCs a través de la API externa de **
 * **Maven**: Para la gestión de dependencias.
 
 ## 2. Configuración de Variables de Entorno
-El sistema requiere un token de seguridad para comunicarse con la API de Decolecta. Configure la siguiente variable de entorno en su IDE o Sistema Operativo:
-
-* **Variable**: `DECOLECTA_TOKEN`
-* **Valor sugerido**: `sk_13369.SMAWFqqnwecEkkGasUUoecoVRCHZzmjP`
+El sistema requiere un token de seguridad para comunicarse con la API de Decolecta. Para modificar el valor de este token, una vez copiado el proyecto, dirigirse al archivo **application.properties** que se encuentra en `src/main/resources`
+Configure la siguiente variable de entorno en su IDE o Sistema Operativo:
+* **Variable**: `decoleta.token`
+* **Valor sugerido**: `sk_<generateyourown>.<generateyourown>`
+Una vez configurado el token de decolecta, revisar la `url`, `username` y `password` de la base de datos. Estas variables fueron definidas en el archivo **application.properties** mencionado anteriormente.
 
 ## 3. Estructura del Proyecto
 El proyecto sigue el layout de paquetes solicitado:
@@ -39,18 +40,148 @@ El proyecto sigue el layout de paquetes solicitado:
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/20601030013
 ```
+#### Respuesta
+```json
+{
+    "condicion": "HABIDO",
+    "createdAt": "2026-02-23T17:57:05.8894064",
+    "departamento": "LIMA",
+    "direccion": "CAL. RICARDO ANGULO RAMIREZ NRO 745 DEP. 202 URB. CORPAC ",
+    "distrito": "SAN ISIDRO",
+    "esAgenteRetencion": false,
+    "esBuenContribuyente": false,
+    "estado": "ACTIVO",
+    "id": 1,
+    "provincia": "LIMA",
+    "razonSocial": "REXTIE S.A.C.",
+    "ruc": "20601030013",
+    "ubigeo": "150131"
+}
+```
 
 ### Caso B: Validación de RUC (11 dígitos)
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/12345
+```
+#### Respuesta
+```json
+{
+    "message": "RUC debe tener 11 dígitos"
+}
 ```
 
 ### Caso C: Error de Proveedor (RUC no válido)
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/11111111111
 ```
-
+#### Respuesta
+```json
+{
+    "message": "{\"message\":\"ruc no valido\"}"
+}
+```
 ### Caso D: Ver Historial de Consultas
 ```bash
 curl -X GET http://localhost:8080/api/sunat/ruc/20601030013/consultas
+```
+#### Respuesta
+```json
+[
+    {
+        "rucConsultado": "20601030013",
+        "resultado": "SUCCESS",
+        "company": {
+            "condicion": "HABIDO",
+            "createdAt": "2026-02-23T17:00:02.560208",
+            "departamento": "LIMA",
+            "direccion": "CAL. RICARDO ANGULO RAMIREZ NRO 745 DEP. 202 URB. CORPAC ",
+            "distrito": "SAN ISIDRO",
+            "esAgenteRetencion": false,
+            "esBuenContribuyente": false,
+            "estado": "ACTIVO",
+            "hibernateLazyInitializer": {},
+            "id": 1,
+            "provincia": "LIMA",
+            "razonSocial": "REXTIE S.A.C.",
+            "ruc": "20601030013",
+            "ubigeo": "150131"
+        },
+        "createdAt": "2026-02-23T17:57:05.905408",
+        "mensajeError": null,
+        "providerStatusCode": 200,
+        "id": 4
+    },
+    {
+        "rucConsultado": "20601030013",
+        "resultado": "SUCCESS",
+        "company": {
+            "condicion": "HABIDO",
+            "createdAt": "2026-02-23T17:00:02.560208",
+            "departamento": "LIMA",
+            "direccion": "CAL. RICARDO ANGULO RAMIREZ NRO 745 DEP. 202 URB. CORPAC ",
+            "distrito": "SAN ISIDRO",
+            "esAgenteRetencion": false,
+            "esBuenContribuyente": false,
+            "estado": "ACTIVO",
+            "hibernateLazyInitializer": {},
+            "id": 1,
+            "provincia": "LIMA",
+            "razonSocial": "REXTIE S.A.C.",
+            "ruc": "20601030013",
+            "ubigeo": "150131"
+        },
+        "createdAt": "2026-02-23T17:02:52.409012",
+        "mensajeError": "SUCCESS CACHE",
+        "providerStatusCode": 200,
+        "id": 3
+    },
+    {
+        "rucConsultado": "20601030013",
+        "resultado": "SUCCESS",
+        "company": {
+            "condicion": "HABIDO",
+            "createdAt": "2026-02-23T17:00:02.560208",
+            "departamento": "LIMA",
+            "direccion": "CAL. RICARDO ANGULO RAMIREZ NRO 745 DEP. 202 URB. CORPAC ",
+            "distrito": "SAN ISIDRO",
+            "esAgenteRetencion": false,
+            "esBuenContribuyente": false,
+            "estado": "ACTIVO",
+            "hibernateLazyInitializer": {},
+            "id": 1,
+            "provincia": "LIMA",
+            "razonSocial": "REXTIE S.A.C.",
+            "ruc": "20601030013",
+            "ubigeo": "150131"
+        },
+        "createdAt": "2026-02-23T17:00:39.088232",
+        "mensajeError": "SUCCESS CACHE",
+        "providerStatusCode": 200,
+        "id": 2
+    },
+    {
+        "rucConsultado": "20601030013",
+        "resultado": "SUCCESS",
+        "company": {
+            "condicion": "HABIDO",
+            "createdAt": "2026-02-23T17:00:02.560208",
+            "departamento": "LIMA",
+            "direccion": "CAL. RICARDO ANGULO RAMIREZ NRO 745 DEP. 202 URB. CORPAC ",
+            "distrito": "SAN ISIDRO",
+            "esAgenteRetencion": false,
+            "esBuenContribuyente": false,
+            "estado": "ACTIVO",
+            "hibernateLazyInitializer": {},
+            "id": 1,
+            "provincia": "LIMA",
+            "razonSocial": "REXTIE S.A.C.",
+            "ruc": "20601030013",
+            "ubigeo": "150131"
+        },
+        "createdAt": "2026-02-23T17:00:02.595209",
+        "mensajeError": null,
+        "providerStatusCode": 200,
+        "id": 1
+    }
+]
 ```

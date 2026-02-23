@@ -6,7 +6,7 @@ Este microservicio permite la consulta de RUCs a través de la API externa de **
 
 ## 1. Requisitos Previos
 * **Java**: Versión 17.
-* **Spring Boot**: Versión 3.4.2.
+* **Spring Boot**: Versión 4.0.3.
 * **Base de Datos**: PostgreSQL (Base de datos: `bdjava14`).
 * **Maven**: Para la gestión de dependencias.
 

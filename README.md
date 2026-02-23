@@ -17,7 +17,7 @@ Configure la siguiente variable de entorno en su IDE o Sistema Operativo:
 * **Variable**: `decoleta.token`
 * **Valor sugerido**: `sk_<generateyourown>.<generateyourown>`.  
 
-Una vez configurado el token de decolecta, revisar la `url`, `username` y `password` de la base de datos. Estas variables fueron definidas en el archivo **application.properties** mencionado anteriormente.
+Una vez configurado el token de **Decolecta**, es importante revisar la `url`, `username` y `password` de la base de datos. Estas variables fueron definidas en el archivo **application.properties** mencionado anteriormente.
 
 ## 3. Estructura del Proyecto
 El proyecto sigue el layout de paquetes solicitado:
@@ -186,4 +186,12 @@ curl -X GET http://localhost:8080/api/sunat/ruc/20601030013/consultas
         "id": 1
     }
 ]
+```
+## 5. Revisión de la base de datos (SQL commands)
+Una vez ejecutada la API, es posible revisar la informacion almacenada en la base de datos. Si deseas verificar los datos directamente en PostgreSQL, puedes utilizar los siguientes comandos:  
+``` sql
+SELECT * FROM companies;
+```
+``` sql
+SELECT * FROM consultas ORDER BY created_at DESC;
 ```
